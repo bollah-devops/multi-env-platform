@@ -1,3 +1,22 @@
 2026-05-08 10:14:37 - Auto shutdown monitor started
 2026-05-08 10:14:37 - Will stop instances after 3600s of inactivity
 2026-05-08 10:14:37 - Idle: 0s / Remaining: 3600s
+2026-05-08 10:19:38 - Activity detected - resetting timer
+2026-05-08 10:19:38 - Idle: 300s / Remaining: 3300s
+2026-05-08 10:24:38 - Idle: 300s / Remaining: 3300s
+2026-05-08 10:29:38 - Activity detected - resetting timer
+2026-05-08 10:29:38 - Idle: 600s / Remaining: 3000s
+2026-05-08 10:34:38 - Idle: 300s / Remaining: 3300s
+2026-05-08 10:39:38 - Idle: 600s / Remaining: 3000s
+2026-05-08 10:44:38 - Idle: 900s / Remaining: 2700s
+2026-05-08 10:49:38 - Idle: 1200s / Remaining: 2400s
+2026-05-08 10:54:38 - Idle: 1500s / Remaining: 2100s
+2026-05-08 10:59:38 - Idle: 1800s / Remaining: 1800s
+2026-05-08 11:04:38 - Idle: 2100s / Remaining: 1500s
+2026-05-08 11:09:39 - Idle: 2400s / Remaining: 1200s
+2026-05-08 11:14:39 - Idle: 2701s / Remaining: 899s
+2026-05-08 11:19:39 - Idle: 3001s / Remaining: 599s
+2026-05-08 11:24:39 - Idle: 3301s / Remaining: 299s
+2026-05-08 11:29:39 - No activity for 3601s - shutting down
+2026-05-08 11:29:41 - IDLE DETECTED - Stopping instances: i-07fc14790a8094ac3
+i-00fc517cacfebf6c6

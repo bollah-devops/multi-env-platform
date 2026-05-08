@@ -120,3 +120,66 @@
         url: http://localhost
         status_code: 200
 
+    - name: Create /opt/scripts directory
+      file:
+        path: /opt/scripts
+        state: directory
+        mode: '0755'
+
+    - name: Create monitor log directories
+      file:
+        path: "{{ item }}"
+        state: directory
+        mode: '0755'
+      loop:
+        - /var/log/monitor
+        - /var/log/monitor/reports
+
+    - name: Deploy auto-recovery script
+      copy:
+        src: ../scripts/auto-recovery.sh
+        dest: /opt/scripts/auto-recovery.sh
+        mode: '0755'
+
+    - name: Deploy alert checker script
+      copy:
+        src: ../scripts/alert-checker.sh
+        dest: /opt/scripts/alert-checker.sh
+        mode: '0755'
+
+    - name: Deploy daily report script
+      copy:
+        src: ../scripts/daily-report.sh
+        dest: /opt/scripts/daily-report.sh
+        mode: '0755'
+
+    - name: Schedule auto-recovery every minute
+      cron:
+        name: "auto recovery"
+        minute: "*"
+        job: "ENV_NAME={{ env_name }} /opt/scripts/auto-recovery.sh"
+
+    - name: Schedule alert checker every 5 minutes
+      cron:
+        name: "alert checker"
+        minute: "*/5"
+        job: "ENV_NAME={{ env_name }} /opt/scripts/alert-checker.sh"
+
+    - name: Schedule daily report at midnight
+      cron:
+        name: "daily report"
+        minute: "0"
+        hour: "0"
+        job: "ENV_NAME={{ env_name }} /opt/scripts/daily-report.sh"
+
+    - name: Run auto-recovery once to verify
+      command: bash -c "ENV_NAME={{ env_name }} /opt/scripts/auto-recovery.sh"
+      become: yes
+
+    - name: Show health log
+      command: cat /var/log/monitor/health.log
+      register: health_output
+
+    - name: Display health log
+      debug:
+        msg: "{{ health_output.stdout_lines }}"
