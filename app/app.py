@@ -1,5 +1,3 @@
-# from flask import Flask, jsonify
-
 import os
 from flask import Flask, jsonify
 
@@ -31,8 +29,11 @@ def status():
     return jsonify({"status": "ok", "environment": ENV_NAME, "version": VERSION})
 
 
+@app.route("/health")
+def health():
+    return jsonify({"healthy": True, "environment": ENV_NAME})
+
+
 if __name__ == "__main__":
     debug_mode = ENV_NAME != "production"
     app.run(host="0.0.0.0", port=5000, debug=debug_mode)
-
-
